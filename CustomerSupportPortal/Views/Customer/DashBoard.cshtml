@@ -1,5 +1,125 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0">Customer Requests</h4>
+
+    <button type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#createRequestModal">
+    + Create New
+</button>
+</div>
+
+
+<table id="RequestDetails" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>CustomerName</th>
+            <th>AssignedTo</th>
+            <th>Priority</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+</table>
+<div class="modal fade" id="createRequestModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Request</h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="createRequestForm">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Subject</label>
+                            <input type="text"
+                                   id="Subject"
+                                   name="Subject"
+                                   class="form-control" />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Priority</label>
+                            <select id="PriorityId"
+                                    name="PriorityId"
+                                    class="form-control">
+                                <option value="">Select Priority</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea id="Description"
+                                  name="Description"
+                                  class="form-control"
+                                  rows="4"></textarea>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+
+            $('#RequestDetails').DataTable({
+                processing: true,
+                serverSide: true,
+
+                ajax: {
+                    url: '@Url.Action("GetAllRequest", "Customer")',
+                    type: 'Post'
+                },
+
+                pageLength: 5,
+
+                // lengthMenu: [5, 10, 25, 50],
+                   lengthChange: false,
+                   info: false,
+                columns: [
+                    { data: 'subject' },
+                    { data: 'customerName' },
+                    { data: 'assignedTo' },
+                    { data: 'priority' },
+                    { data: 'description' },
+                    { data: 'status' }
+                ]
+            });
+
+        });
+    </script>
+
 }

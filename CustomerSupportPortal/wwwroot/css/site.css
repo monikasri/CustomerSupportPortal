@@ -29,3 +29,74 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+
+#RequestDetails {
+    width: 100% !important;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+}
+
+    /* Header */
+    #RequestDetails thead th {
+        background-color: #1f4e78;
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 6px 10px;
+        text-align: left;
+        border: none;
+    }
+
+    /* Table body */
+    #RequestDetails tbody td {
+        padding: 11px 10px;
+        vertical-align: middle;
+        color: #343a40;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    /* Alternating rows */
+    #RequestDetails tbody tr:nth-child(even) {
+        background-color: #f5f8fb;
+    }
+
+    /* Hover effect */
+    #RequestDetails tbody tr:hover {
+        background-color: #e8f1f8;
+    }
+
+/* DataTables wrapper */
+.dataTables_wrapper {
+    font-size: 14px;
+}
+
+    /* Search box */
+    .dataTables_wrapper .dt-search input {
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        padding: 7px 10px;
+        margin-left: 5px;
+    }
+
+    /* Page size dropdown */
+    .dataTables_wrapper .dt-length select {
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        padding: 6px 25px 6px 8px;
+    }
+
+    /* Pagination buttons */
+    .dataTables_wrapper .dt-paging button {
+        border-radius: 5px !important;
+        margin: 2px;
+    }
+
+/* Table container */
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
