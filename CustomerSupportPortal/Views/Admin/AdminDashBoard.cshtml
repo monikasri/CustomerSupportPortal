@@ -1,0 +1,90 @@
+﻿<table id="RequestDetails" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>CustomerName</th>
+            <th>AssignedTo</th>
+            <th>Priority</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts {
+
+    <script>
+        var agents = [];
+        $(document).ready(function () {
+           $.ajax({
+                url: '/Admin/GetAgents',
+                type: 'GET',
+                success: function (data) {
+                 agents = data;
+                  // After agents are loaded, initialize DataTable
+                  LoadRequestTable();
+                    },
+                 error: function () {
+                       alert('Unable to load agents.');
+                    }
+                });
+            });
+            
+
+  function LoadRequestTable() {
+
+     $('#RequestDetails').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '@Url.Action("GetAllRequest", "Admin")',
+                    type: 'Post'
+                },
+                pageLength: 5,
+                   lengthChange: false,
+                   info: false,
+        columns: [
+            { data: 'subject' },
+            { data: 'customerName' },
+
+            {
+                data: 'assignedTo',
+                render: function (data, type, row) {
+
+                    var html =
+                        '<select class="form-select agent-dropdown" ' +
+                        'data-request-id="' + row.requestId + '">';
+
+                    html += '<option value="">Select Agent</option>';
+
+                    $.each(agents, function (i, agent) {
+
+                        var selected =
+                            agent.userId == row.assignedToId
+                                ? 'selected'
+                                : '';
+
+                        html +=
+                            '<option value="' + agent.userId + '" ' +
+                            selected + '>' +
+                            agent.userName +
+                            '</option>';
+                    });
+
+                    html += '</select>';
+
+                    return html;
+                }
+            },
+
+            { data: 'priority' },
+            { data: 'description' },
+            { data: 'status' }
+        ]
+    });
+}
+
+
+    </script>
+
+}

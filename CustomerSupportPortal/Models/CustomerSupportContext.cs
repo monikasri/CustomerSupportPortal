@@ -55,7 +55,7 @@ public partial class CustomerSupportContext : DbContext
         {
             entity.ToTable("Request");
 
-            entity.Property(e => e.RequestId).ValueGeneratedNever();
+            entity.Property(e => e.RequestId).ValueGeneratedOnAdd();
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.Description)
                 .HasMaxLength(200)

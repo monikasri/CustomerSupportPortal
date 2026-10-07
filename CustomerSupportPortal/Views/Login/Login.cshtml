@@ -62,8 +62,8 @@
                         },
                         success: function (response) {
                             if (response.success) {
-                                window.location.href =
-                                    '@Url.Action("DashBoard", "Customer")';
+                                     window.location.href = response.redirectUrl;
+                                    // '@Url.Action("DashBoard", "Customer")';
                             }
                             else
                             {

@@ -7,13 +7,14 @@ public partial class UserProfile
 {
     public int UserId { get; set; }
 
-    public string UserName { get; set; } = null!;
+    public string? UserName { get; set; } = null!;
 
-    public string Email { get; set; } = null!;
+    public string? Email { get; set; } = null!;
 
-    public string Password { get; set; } = null!;
+    public string? Password { get; set; } = null!;
 
-    public int RoleId { get; set; }
+    public int? RoleId { get; set; }
+    public string RoleName { get; set; }
 
     public DateTime? CreatedDate { get; set; }
 

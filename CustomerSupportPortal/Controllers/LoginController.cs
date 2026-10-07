@@ -22,20 +22,92 @@ namespace CustomerSupportPortal.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)
         {
             #region Authentication Logic 
-            bool isValid = await _loginService.AuthenticateUserAsync(email, password);
-            if (isValid)
+            var user = _loginService.AuthenticateUserAsync(email, password);
+           // UserRole? role = _repository.GetRoleNameByID(usersProfile.RoleId);
+            if (user == null)
             {
-                return Ok(new { success = true, message = "Login Successful" });
+                return Json(new
+                {
+                    success = false,
+                    message = "Invalid login"
+                });
             }
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Role, user.RoleName)
+                };
+
+            var identity = new ClaimsIdentity(
+                claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                principal);
+
+            string redirectUrl;
+
+            if (user.RoleName == "Admin")
+                redirectUrl = Url.Action("AdminDashboard", "Admin");
+            else if (user.RoleName == "Agent")
+                redirectUrl = Url.Action("Dashboard", "Agent");
             else
+                redirectUrl = Url.Action("Dashboard", "Customer");
+
+            return Json(new
             {
-                return Ok(new { success = false, message = "Login failed" });
-            }
+                success = true,
+                redirectUrl
+            });
             #endregion
         }
+        //[HttpPost]
+        //public async Task<IActionResult> Login(string email, string password)
+        //{
+        //    #region Authentication Logic 
+        //    bool isValid = await _loginService.AuthenticateUserAsync(email, password);
+        //    var role = User.FindFirst(ClaimTypes.Role)?.Value;
+        //    if (isValid)
+        //    {
+        //        if (role == "Admin")
+        //        {
+        //            return Json(new
+        //            {
+        //                success = true,
+        //                redirectUrl = Url.Action("AdminDashboard", "Admin")
+        //            });
+        //        }
+        //        else if (role == "Agent")
+        //        {
+        //            return Json(new
+        //            {
+        //                success = true,
+        //                redirectUrl = Url.Action("Dashboard", "Customer")
+        //            });
+        //        }
+        //        else
+        //        {
+        //            return Json(new
+        //            {
+        //                success = true,
+        //                redirectUrl = Url.Action("Dashboard", "Customer")
+        //            });
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return Ok(new { success = false, message = "Login failed" });
+        //    }
+        //    #endregion
+        //}
     }
 }

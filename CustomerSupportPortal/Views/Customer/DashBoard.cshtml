@@ -34,13 +34,9 @@
                         data-bs-dismiss="modal">
                 </button>
             </div>
-
             <div class="modal-body">
-
                 <form id="createRequestForm">
-
                     <div class="row">
-
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Subject</label>
                             <input type="text"
@@ -48,21 +44,13 @@
                                    name="Subject"
                                    class="form-control" />
                         </div>
-
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Priority</label>
-                            <select id="PriorityId"
-                                    name="PriorityId"
-                                    class="form-control">
-                                <option value="">Select Priority</option>
-                                <option value="1">Low</option>
-                                <option value="2">Medium</option>
-                                <option value="3">High</option>
+                            <select id="PriorityId" name="PriorityId" class="form-control">
+                                <option value="">Select Priority</option>                               
                             </select>
                         </div>
-
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label">Description</label>
                         <textarea id="Description"
@@ -70,7 +58,6 @@
                                   class="form-control"
                                   rows="4"></textarea>
                     </div>
-
                     <div class="text-end">
                         <button type="button"
                                 class="btn btn-secondary"
@@ -83,9 +70,7 @@
                             Save
                         </button>
                     </div>
-
                 </form>
-
             </div>
         </div>
     </div>
@@ -94,19 +79,14 @@
 
     <script>
         $(document).ready(function () {
-
             $('#RequestDetails').DataTable({
                 processing: true,
                 serverSide: true,
-
                 ajax: {
                     url: '@Url.Action("GetAllRequest", "Customer")',
                     type: 'Post'
                 },
-
                 pageLength: 5,
-
-                // lengthMenu: [5, 10, 25, 50],
                    lengthChange: false,
                    info: false,
                 columns: [
@@ -117,8 +97,53 @@
                     { data: 'description' },
                     { data: 'status' }
                 ]
-            });
+            });//DataTable End
+            //Save Start
+            $('#createRequestForm').submit(function (e) {
+                e.preventDefault();
+                var request = {
+                    Subject: $("#Subject").val(),
+                    PriorityId: $("#PriorityId").val(),
+                    Description: $("#Description").val(),
+                };
+                $.ajax({
+                    url: '/Customer/CreateRequest',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(request),
+                    success: function (response) {
+                        if (response.success) {
+                            // Close popup
+                            $('#createRequestModal').modal('hide');
+                            // Clear form
+                            $('#createRequestForm')[0].reset();
+                            // Refresh DataTable
+                            $('#RequestDetails').DataTable().ajax.reload(null, false);
+                            alert('Request created successfully.');
+                        }
+                    },
 
+                    error: function () {
+                        alert('Error while creating request.');
+                    }
+                });
+            });
+            //Save End
+        });//Document.Ready End
+        $('#createRequestModal').on('shown.bs.modal', function () {
+            $.ajax({
+                url: '@Url.Action("GetPriorities", "Customer")',
+                type: 'GET',
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $('#PriorityId').append(
+                            $('<option></option>')
+                                .val(item.priorityId)
+                                .text(item.priorityType)
+                        );
+                    });
+                }
+            });
         });
     </script>
 

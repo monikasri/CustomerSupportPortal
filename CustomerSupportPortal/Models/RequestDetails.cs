@@ -6,6 +6,8 @@
         public string? CustomerName { get; set; }
         public string? AssignedTo { get; set; }
         public string? Priority { get; set; }
+        public int? PriorityId { get; set; }
+        public int? CusomerId { get; set; }
         public string? Description { get; set; }
         public string? Status { get; set; }
     }

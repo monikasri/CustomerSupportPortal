@@ -23,7 +23,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ISupportRequestRepository, SupportRequestRepository>();
-//builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
