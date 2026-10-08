@@ -134,10 +134,10 @@ public partial class CustomerSupportContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Role).WithMany(p => p.UserProfiles)
-                .HasForeignKey(d => d.RoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_UserProfile_UserRoles");
+            //entity.HasOne(d => d.Role).WithMany(p => p.UserProfiles)
+            //    .HasForeignKey(d => d.RoleId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_UserProfile_UserRoles");
         });
 
         modelBuilder.Entity<UserRole>(entity =>

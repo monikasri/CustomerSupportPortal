@@ -13,9 +13,6 @@ public partial class UserProfile
 
     public string? Password { get; set; } = null!;
 
-    public int? RoleId { get; set; }
-    public string RoleName { get; set; }
-
     public DateTime? CreatedDate { get; set; }
 
     public DateTime? UpdatedDate { get; set; }

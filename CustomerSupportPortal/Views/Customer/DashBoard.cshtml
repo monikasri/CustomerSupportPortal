@@ -1,150 +1,247 @@
-﻿<div class="d-flex justify-content-between align-items-center mb-3">
-    <h4 class="mb-0">Customer Requests</h4>
+﻿<div class="d-flex justify-content-between align-items-center mb-4 dashboard-header">
+    <div>
+        <h1 class="h3 mb-1">Customer Requests</h1>
+        <p class="text-muted mb-0">Overview of your support requests and their current status.</p>
+    </div>
 
-    <button type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#createRequestModal">
-    + Create New
-</button>
+    <div>
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#createRequestModal">
+            + Create New
+        </button>
+    </div>
 </div>
 
+<!-- Summary cards -->
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+        <div class="card summary-card shadow-sm">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Total Requests</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 id="totalRequests" class="mb-0">0</h3>
+                    <span class="text-muted small">All time</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card summary-card shadow-sm">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Open Requests</h6>
+                <h3 id="openRequests" class="mb-0">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card summary-card shadow-sm">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Pending Requests</h6>
+                <h3 id="pendingRequests" class="mb-0">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card summary-card shadow-sm">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Closed Requests</h6>
+                <h3 id="closedRequests" class="mb-0">0</h3>
+            </div>
+        </div>
+    </div>
+</div>
 
-<table id="RequestDetails" class="table table-striped">
-    <thead>
-        <tr>
-            <th>Subject</th>
-            <th>CustomerName</th>
-            <th>AssignedTo</th>
-            <th>Priority</th>
-            <th>Description</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-</table>
-<div class="modal fade" id="createRequestModal" tabindex="-1">
+<!-- Table container -->
+<div class="table-container card p-3 mb-4">
+    <div class="table-responsive">
+        <table id="RequestDetails" class="table table-hover align-middle mb-0" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Customer</th>
+                    <th>Assigned To</th>
+                    <th>Priority</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<!-- Create Request Modal -->
+<div class="modal fade" id="createRequestModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-
             <div class="modal-header">
                 <h5 class="modal-title">Create New Request</h5>
-
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal">
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="createRequestForm">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Subject</label>
-                            <input type="text"
-                                   id="Subject"
-                                   name="Subject"
-                                   class="form-control" />
+                            <input type="text" id="Subject" name="Subject" class="form-control" />
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Priority</label>
-                            <select id="PriorityId" name="PriorityId" class="form-control">
-                                <option value="">Select Priority</option>                               
+                            <select id="PriorityId" name="PriorityId" class="form-select">
+                                <option value="">Select Priority</option>
                             </select>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea id="Description"
-                                  name="Description"
-                                  class="form-control"
-                                  rows="4"></textarea>
+                        <textarea id="Description" name="Description" class="form-control" rows="4"></textarea>
                     </div>
                     <div class="text-end">
-                        <button type="button"
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal">
-                            Cancel
-                        </button>
-
-                        <button type="submit"
-                                class="btn btn-primary">
-                            Save
-                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 @section Scripts {
 
     <script>
-        $(document).ready(function () {
-            $('#RequestDetails').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: '@Url.Action("GetAllRequest", "Customer")',
-                    type: 'Post'
-                },
-                pageLength: 5,
-                   lengthChange: false,
-                   info: false,
-                columns: [
-                    { data: 'subject' },
-                    { data: 'customerName' },
-                    { data: 'assignedTo' },
-                    { data: 'priority' },
-                    { data: 'description' },
-                    { data: 'status' }
-                ]
-            });//DataTable End
-            //Save Start
-            $('#createRequestForm').submit(function (e) {
-                e.preventDefault();
-                var request = {
-                    Subject: $("#Subject").val(),
-                    PriorityId: $("#PriorityId").val(),
-                    Description: $("#Description").val(),
-                };
-                $.ajax({
-                    url: '/Customer/CreateRequest',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(request),
-                    success: function (response) {
-                        if (response.success) {
-                            // Close popup
-                            $('#createRequestModal').modal('hide');
-                            // Clear form
-                            $('#createRequestForm')[0].reset();
-                            // Refresh DataTable
-                            $('#RequestDetails').DataTable().ajax.reload(null, false);
-                            alert('Request created successfully.');
-                        }
-                    },
+        (function () {
+            // Helper to map priority/status text to Bootstrap badge classes
+            function priorityBadge(priority) {
+                if (!priority) return '<span class="badge bg-secondary">Unknown</span>';
+                var text = priority.toString();
+                if (/high/i.test(text)) return '<span class="badge bg-danger">' + text + '</span>';
+                if (/medium/i.test(text)) return '<span class="badge bg-warning text-dark">' + text + '</span>';
+                if (/low/i.test(text)) return '<span class="badge bg-success">' + text + '</span>';
+                return '<span class="badge bg-secondary">' + text + '</span>';
+            }
 
-                    error: function () {
-                        alert('Error while creating request.');
+            function statusBadge(status) {
+                if (!status) return '<span class="badge bg-secondary">Unknown</span>';
+                var text = status.toString();
+                if (/open/i.test(text)) return '<span class="badge bg-primary">' + text + '</span>';
+                if (/pending/i.test(text)) return '<span class="badge bg-warning text-dark">' + text + '</span>';
+                if (/closed/i.test(text)) return '<span class="badge bg-success">' + text + '</span>';
+                return '<span class="badge bg-secondary">' + text + '</span>';
+            }
+
+            // Initialize DataTable
+            var table = null;
+            $(document).ready(function () {
+                table = $('#RequestDetails').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: '@Url.Action("GetAllRequest", "Customer")',
+                        type: 'POST'
+                    },
+                    pageLength: 5,
+                    lengthChange: false,
+                    info: false,
+                    responsive: true,
+                    columns: [
+                        { data: 'subject' },
+                        { data: 'customerName' },
+                        { data: 'assignedTo' },
+                        {
+                            data: 'priority',
+                            render: function (data, type, row) {
+                                return priorityBadge(data);
+                            },
+                            orderable: false
+                        },
+                        { data: 'description' },
+                        {
+                            data: 'status',
+                            render: function (data, type, row) {
+                                return statusBadge(data);
+                            },
+                            orderable: false
+                        }
+                    ]
+                });
+
+                // Refresh summary cards initially and whenever the table state changes
+                loadSummaryCounts();
+                $('#RequestDetails').on('draw.dt', function () {
+                    // try to refresh summary counts (does separate request to fetch all rows)
+                    loadSummaryCounts();
+                });
+
+                // Create request form submit
+                $('#createRequestForm').submit(function (e) {
+                    e.preventDefault();
+                    var request = {
+                        Subject: $("#Subject").val(),
+                        PriorityId: $("#PriorityId").val(),
+                        Description: $("#Description").val(),
+                    };
+                    $.ajax({
+                        url: '/Customer/CreateRequest',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(request),
+                        success: function (response) {
+                            if (response.success) {
+                                $('#createRequestModal').modal('hide');
+                                $('#createRequestForm')[0].reset();
+                                $('#RequestDetails').DataTable().ajax.reload(null, false);
+                                loadSummaryCounts();
+                                // small success toast
+                                alert('Request created successfully.');
+                            }
+                        },
+                        error: function () {
+                            alert('Error while creating request.');
+                        }
+                    });
+                });
+            });
+
+            // Populate priority drop-down when modal opens (clear first to avoid duplicates)
+            $('#createRequestModal').on('shown.bs.modal', function () {
+                $('#PriorityId').empty().append($('<option>').val('').text('Select Priority'));
+                $.ajax({
+                    url: '@Url.Action("GetPriorities", "Customer")',
+                    type: 'GET',
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            $('#PriorityId').append($('<option></option>').val(item.priorityId).text(item.priorityType));
+                        });
                     }
                 });
             });
-            //Save End
-        });//Document.Ready End
-        $('#createRequestModal').on('shown.bs.modal', function () {
-            $.ajax({
-                url: '@Url.Action("GetPriorities", "Customer")',
-                type: 'GET',
-                success: function (data) {
-                    $.each(data, function (i, item) {
-                        $('#PriorityId').append(
-                            $('<option></option>')
-                                .val(item.priorityId)
-                                .text(item.priorityType)
-                        );
-                    });
-                }
-            });
-        });
+
+            // Load summary counts by calling the same endpoint (read-only). We send a large length to attempt to retrieve all rows.
+            function loadSummaryCounts() {
+                $.ajax({
+                    url: '@Url.Action("GetAllRequest", "Customer")',
+                    type: 'POST',
+                    data: { start: 0, length: 100000, draw: 1, 'search[value]': '' },
+                    success: function (response) {
+                        var rows = response.data || [];
+                        var total = response.recordsTotal || rows.length;
+                        var open = 0, pending = 0, closed = 0;
+                        $.each(rows, function (i, r) {
+                            var s = (r.status || '').toString().toLowerCase();
+                            if (s.indexOf('open') !== -1) open++;
+                            else if (s.indexOf('pending') !== -1) pending++;
+                            else if (s.indexOf('closed') !== -1) closed++;
+                        });
+
+                        // If the server returned an accurate total but no full rows, fall back to counts from rows
+                        if (!total || total < (open + pending + closed)) total = open + pending + closed;
+
+                        $('#totalRequests').text(total);
+                        $('#openRequests').text(open);
+                        $('#pendingRequests').text(pending);
+                        $('#closedRequests').text(closed);
+                    }
+                });
+            }
+        })();
     </script>
 
 }

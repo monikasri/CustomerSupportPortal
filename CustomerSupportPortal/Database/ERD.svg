@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" viewBox="0 0 1100 680">
+  <defs>
+	<style>
+	  .box { fill:#ffffff; stroke:#0b5ea8; stroke-width:4; }
+	  .title { fill:#0b5ea8; font: 18px Arial; font-weight:700; }
+	  .col { fill:#333333; font:14px Arial; }
+	  .pk { font-weight:700; }
+	  .line { stroke:#555555; stroke-width:3; fill:none; }
+	</style>
+	<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+	  <path d="M 0 0 L 10 5 L 0 10 z" fill="#555555" />
+	</marker>
+  </defs>
+
+  <!-- Request (center) -->
+  <g id="Request">
+	<rect x="360" y="260" width="380" height="260" class="box" rx="4"/>
+	<rect x="360" y="260" width="380" height="36" fill="#0b5ea8" rx="4"/>
+	<text x="370" y="285" class="title">Request</text>
+	<text x="370" y="315" class="col pk">RequestId</text>
+	<text x="370" y="340" class="col">StatusId</text>
+	<text x="370" y="365" class="col">Subject</text>
+	<text x="370" y="390" class="col">AssignedTo</text>
+	<text x="370" y="415" class="col">CustomerId</text>
+	<text x="370" y="440" class="col">Description</text>
+	<text x="370" y="465" class="col">CreatedDate</text>
+	<text x="370" y="490" class="col">UpdatedDate</text>
+	<text x="370" y="515" class="col">PriorityId</text>
+  </g>
+
+  <!-- UserProfile (top center) -->
+  <g id="UserProfile">
+	<rect x="360" y="40" width="360" height="180" class="box" rx="4"/>
+	<rect x="360" y="40" width="360" height="36" fill="#0b5ea8" rx="4"/>
+	<text x="370" y="65" class="title">UserProfile</text>
+	<text x="370" y="95" class="col pk">UserId</text>
+	<text x="370" y="120" class="col">UserName</text>
+	<text x="370" y="145" class="col">Email</text>
+	<text x="370" y="170" class="col">Password</text>
+	<text x="370" y="195" class="col">RoleId</text>
+  </g>
+
+  <!-- UserRoles (top-right) -->
+  <g id="UserRoles">
+	<rect x="740" y="40" width="260" height="120" class="box" rx="4"/>
+	<rect x="740" y="40" width="260" height="36" fill="#0b5ea8" rx="4"/>
+	<text x="750" y="65" class="title">UserRoles</text>
+	<text x="750" y="100" class="col pk">RoleId</text>
+	<text x="750" y="125" class="col">RoleName</text>
+  </g>
+
+  <!-- RequestComment (top-left) -->
+  <g id="RequestComment">
+	<rect x="20" y="40" width="300" height="180" class="box" rx="4"/>
+	<rect x="20" y="40" width="300" height="36" fill="#0b5ea8" rx="4"/>
+	<text x="30" y="65" class="title">RequestComment</text>
+	<text x="30" y="95" class="col pk">CommentId</text>
+	<text x="30" y="120" class="col">RequestId</text>
+	<text x="30" y="145" class="col">UserId</text>
+	<text x="30" y="170" class="col">Comments</text>
+	<text x="30" y="195" class="col">CreatedDate</text>
+  </g>
+
+  <!-- Priority (right center) -->
+  <g id="Priority">
+	<rect x="760" y="320" width="220" height="120" class="box" rx="4"/>
+	<rect x="760" y="320" width="220" height="36" fill="#0b5ea8" rx="4"/>
+	<text x="770" y="345" class="title">Priority</text>
+	<text x="770" y="375" class="col pk">PriorityId</text>
+	<text x="770" y="400" class="col">PriorityType</text>
+  </g>
+
+  <!-- Status (left bottom) -->
+  <g id="Status">
+	<rect x="80" y="420" width="220" height="120" class="box" rx="4"/>
+	<rect x="80" y="420" width="220" height="36" fill="#0b5ea8" rx="4"/>
+	<text x="90" y="445" class="title">Status</text>
+	<text x="90" y="475" class="col pk">StatusId</text>
+	<text x="90" y="500" class="col">StatusType</text>
+  </g>
+
+  <!-- Connectors -->
+  <!-- RequestComment -> Request -->
+  <path d="M320 130 L360 130" class="line" marker-end="url(#arrow)" />
+  <path d="M200 220 L200 260 L360 260" class="line" marker-end="url(#arrow)" />
+
+  <!-- UserProfile -> Request (Customer and AssignedTo) -->
+  <path d="M540 220 L540 260" class="line" marker-end="url(#arrow)" />
+  <path d="M480 220 L480 260" class="line" marker-end="url(#arrow)" />
+
+  <!-- UserRoles -> UserProfile -->
+  <path d="M740 80 L720 80 L720 120 L720 120" class="line" marker-end="url(#arrow)" />
+  <path d="M720 120 L720 140" class="line" marker-end="url(#arrow)" />
+
+  <!-- Priority -> Request -->
+  <path d="M760 380 L740 380 L740 380" class="line" marker-end="url(#arrow)" />
+  <path d="M740 380 L740 380 L740 360 L740 360 L740 360" class="line" marker-end="url(#arrow)" />
+  <path d="M700 380 L740 380" class="line" marker-end="url(#arrow)" />
+
+  <!-- Status -> Request -->
+  <path d="M200 480 L360 480" class="line" marker-end="url(#arrow)" />
+
+  <!-- Small labels for relationships -->
+  <text x="420" y="250" class="col">CustomerId / AssignedTo</text>
+  <text x="740" y="360" class="col">PriorityId</text>
+  <text x="220" y="470" class="col">StatusId</text>
+
+</svg>

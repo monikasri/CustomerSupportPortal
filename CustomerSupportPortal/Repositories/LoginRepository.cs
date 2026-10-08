@@ -15,12 +15,11 @@ namespace CustomerSupportPortal.Repositories
         {
             return _context.UserRoles.FirstOrDefault(x => x.RoleId == RoleId);
         }
-        public UserProfile? ValidateUser(string email, string password)
+        public UserModel? ValidateUser(string email, string password)
         {
-            // return _context.UserProfiles.FirstOrDefault(x => x.Email == email && x.Password == password);
             var userDetails = _context.UserProfiles
                     .Where(x => x.Email == email && x.Password == password)
-                    .Select(x => new UserProfile
+                    .Select(x => new UserModel
                     {
                         UserId = x.UserId,
                         UserName = x.UserName,

@@ -15,29 +15,10 @@ namespace CustomerSupportPortal.Services
             _repository = repository;
             _httpContextAccessor = httpContextAccessor;
         }
-        public UserProfile? AuthenticateUserAsync(string username, string password)
+        public UserModel? AuthenticateUserAsync(string username, string password)
         {
-            UserProfile? usersProfile = _repository.ValidateUser(username, password);
-            return usersProfile;
-            //if (usersProfile != null)
-            //{
-            //    UserRole? role = _repository.GetRoleNameByID(usersProfile.RoleId);
-            //    var claims = new List<Claim>
-            //    {
-                    
-            //        new Claim(ClaimTypes.Name, usersProfile.UserName),
-            //        new Claim(ClaimTypes.Role,role.RoleName),
-            //        new Claim(ClaimTypes.Email, usersProfile.Email)
-            //    };
-            //    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            //    var principal = new ClaimsPrincipal(identity);
-            //    await _httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
+            UserModel? usersModel = _repository.ValidateUser(username, password);
+            return usersModel;
         }
     }
 }

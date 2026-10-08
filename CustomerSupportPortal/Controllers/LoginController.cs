@@ -59,7 +59,7 @@ namespace CustomerSupportPortal.Controllers
             if (user.RoleName == "Admin")
                 redirectUrl = Url.Action("AdminDashboard", "Admin");
             else if (user.RoleName == "Agent")
-                redirectUrl = Url.Action("Dashboard", "Agent");
+                redirectUrl = Url.Action("AgentDashboard", "Agent");
             else
                 redirectUrl = Url.Action("Dashboard", "Customer");
 

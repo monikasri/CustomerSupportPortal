@@ -3,7 +3,7 @@ namespace CustomerSupportPortal.Services
 {
     public interface ILoginService
     {
-        UserProfile? AuthenticateUserAsync(string email, string password);
+        UserModel? AuthenticateUserAsync(string email, string password);
 
     }
 }

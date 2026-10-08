@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="ERD">
+	<mxGraphModel dx="1189" dy="781" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0">
+	  <root>
+		<mxCell id="0"/>
+		<mxCell id="1" parent="0"/>
+
+		<!-- Request (center) -->
+		<mxCell id="request" value="&lt;div style=&quot;font-weight:bold;color:#ffffff;background:#0b5ea8;padding:6px;&quot;&gt;Request&lt;/div&gt;&lt;div style=&quot;padding:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;&quot;&gt;&lt;ul style=&quot;margin:0;padding-left:16px;&quot;&gt;&lt;li&gt;&lt;strong&gt;RequestId&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;StatusId&lt;/li&gt;&lt;li&gt;Subject&lt;/li&gt;&lt;li&gt;AssignedTo&lt;/li&gt;&lt;li&gt;CustomerId&lt;/li&gt;&lt;li&gt;Description&lt;/li&gt;&lt;li&gt;CreatedDate&lt;/li&gt;&lt;li&gt;UpdatedDate&lt;/li&gt;&lt;li&gt;PriorityId&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0b5ea8;fillColor=#ffffff;align=left;verticalAlign=top;spacingLeft=0;spacingTop=0;fontSize=12;" vertex="1" parent="1">
+		  <mxGeometry x="360" y="260" width="320" height="260" as="geometry"/>
+		</mxCell>
+
+		<!-- UserProfile (top center) -->
+		<mxCell id="userprofile" value="&lt;div style=&quot;font-weight:bold;color:#ffffff;background:#0b5ea8;padding:6px;&quot;&gt;UserProfile&lt;/div&gt;&lt;div style=&quot;padding:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;&quot;&gt;&lt;ul style=&quot;margin:0;padding-left:16px;&quot;&gt;&lt;li&gt;&lt;strong&gt;UserId&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;UserName&lt;/li&gt;&lt;li&gt;Email&lt;/li&gt;&lt;li&gt;Password&lt;/li&gt;&lt;li&gt;RoleId&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0b5ea8;fillColor=#ffffff;align=left;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+		  <mxGeometry x="360" y="40" width="360" height="180" as="geometry"/>
+		</mxCell>
+
+		<!-- UserRoles (top-right) -->
+		<mxCell id="userroles" value="&lt;div style=&quot;font-weight:bold;color:#ffffff;background:#0b5ea8;padding:6px;&quot;&gt;UserRoles&lt;/div&gt;&lt;div style=&quot;padding:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;&quot;&gt;&lt;ul style=&quot;margin:0;padding-left:16px;&quot;&gt;&lt;li&gt;&lt;strong&gt;RoleId&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;RoleName&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0b5ea8;fillColor=#ffffff;align=left;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+		  <mxGeometry x="740" y="40" width="260" height="120" as="geometry"/>
+		</mxCell>
+
+		<!-- RequestComment (top-left) -->
+		<mxCell id="requestcomment" value="&lt;div style=&quot;font-weight:bold;color:#ffffff;background:#0b5ea8;padding:6px;&quot;&gt;RequestComment&lt;/div&gt;&lt;div style=&quot;padding:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;&quot;&gt;&lt;ul style=&quot;margin:0;padding-left:16px;&quot;&gt;&lt;li&gt;&lt;strong&gt;CommentId&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;RequestId&lt;/li&gt;&lt;li&gt;UserId&lt;/li&gt;&lt;li&gt;Comments&lt;/li&gt;&lt;li&gt;CreatedDate&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0b5ea8;fillColor=#ffffff;align=left;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+		  <mxGeometry x="20" y="40" width="300" height="180" as="geometry"/>
+		</mxCell>
+
+		<!-- Priority (right center) -->
+		<mxCell id="priority" value="&lt;div style=&quot;font-weight:bold;color:#ffffff;background:#0b5ea8;padding:6px;&quot;&gt;Priority&lt;/div&gt;&lt;div style=&quot;padding:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;&quot;&gt;&lt;ul style=&quot;margin:0;padding-left:16px;&quot;&gt;&lt;li&gt;&lt;strong&gt;PriorityId&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;PriorityType&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0b5ea8;fillColor=#ffffff;align=left;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+		  <mxGeometry x="760" y="320" width="220" height="120" as="geometry"/>
+		</mxCell>
+
+		<!-- Status (left bottom) -->
+		<mxCell id="status" value="&lt;div style=&quot;font-weight:bold;color:#ffffff;background:#0b5ea8;padding:6px;&quot;&gt;Status&lt;/div&gt;&lt;div style=&quot;padding:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;&quot;&gt;&lt;ul style=&quot;margin:0;padding-left:16px;&quot;&gt;&lt;li&gt;&lt;strong&gt;StatusId&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;StatusType&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#0b5ea8;fillColor=#ffffff;align=left;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+		  <mxGeometry x="80" y="420" width="220" height="120" as="geometry"/>
+		</mxCell>
+
+		<!-- Edges / Relationships -->
+		<mxCell id="e_req_cust" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555" edge="1" parent="1" source="request" target="userprofile">
+		  <mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+
+		<mxCell id="e_req_assigned" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555" edge="1" parent="1" source="request" target="userprofile">
+		  <mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+
+		<mxCell id="e_req_status" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555" edge="1" parent="1" source="request" target="status">
+		  <mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+
+		<mxCell id="e_req_priority" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555" edge="1" parent="1" source="request" target="priority">
+		  <mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+
+		<mxCell id="e_comment_request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555" edge="1" parent="1" source="requestcomment" target="request">
+		  <mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+
+		<mxCell id="e_comment_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555" edge="1" parent="1" source="requestcomment" target="userprofile">
+		  <mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+
+		<mxCell id="e_role_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#555555" edge="1" parent="1" source="userroles" target="userprofile">
+		  <mxGeometry relative="1" as="geometry"/>
+		</mxCell>
+
+	  </root>
+	</mxGraphModel>
+  </diagram>
+</mxfile>

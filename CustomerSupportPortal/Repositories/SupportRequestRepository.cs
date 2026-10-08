@@ -36,6 +36,7 @@ namespace CustomerSupportPortal.Repositories
                    Subject = r.Subject,
                    CustomerName = r.Customer != null ? r.Customer.UserName : null,
                    AssignedTo = r.AssignedToNavigation != null ? r.AssignedToNavigation.UserName : null,
+                   AssignedToId=r.AssignedToNavigation.UserId != null ? r.AssignedToNavigation.UserId : null,
                    Priority = r.Priority != null ? r.Priority.PriorityType : null,
                    Description = r.Description,
                    Status = r.Status.StatusType

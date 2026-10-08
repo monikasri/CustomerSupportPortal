@@ -100,3 +100,53 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
+/* Dashboard specific styles */
+.dashboard-header h1 {
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+.summary-card {
+    border: 0;
+    border-radius: 10px;
+}
+.summary-card .card-body {
+    padding: 1rem 1.25rem;
+}
+.summary-card h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+/* DataTable header refinement */
+#RequestDetails thead th {
+    background-color: #0d6efd; /* bootstrap primary */
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 12px;
+    border: none;
+}
+
+/* row hover more pronounced */
+#RequestDetails tbody tr:hover {
+    background-color: rgba(13,110,253,0.05);
+}
+
+/* Priority / status badges: slightly larger */
+.badge {
+    font-size: 0.85rem;
+    padding: 0.45em 0.6em;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .summary-card h3 { font-size: 1.25rem; }
+    .dashboard-header { flex-direction: column; gap: .5rem; align-items: flex-start; }
+}
+
+/* Improve DataTable controls spacing */
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 0.75rem;
+}
