@@ -73,14 +73,6 @@ public partial class CustomerSupportContext : DbContext
                 .HasForeignKey(d => d.CustomerId)
                 .HasConstraintName("FK_Request_CustomerUserId");
             #endregion
-            //entity.HasOne(d => d.AssignedToNavigation).WithMany()
-            //    .HasForeignKey(d => d.AssignedTo)
-            //    .HasConstraintName("FK_Request_UserId");
-
-            //entity.HasOne(d => d.Customer).WithMany()
-            //    .HasForeignKey(d => d.CustomerId)
-            //    .HasConstraintName("FK_Request_CustomerUserId");
-
             entity.HasOne(d => d.Priority).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.PriorityId)
                 .HasConstraintName("FK_Request_Priority");

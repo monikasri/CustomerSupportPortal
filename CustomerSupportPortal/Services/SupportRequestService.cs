@@ -16,7 +16,6 @@ namespace CustomerSupportPortal.Services
         public List<Priority> GetPriorities()
         {
             return _repository.GetPriorities();
-
         }
         public void CreateRequest(RequestDetails requestDetails, string? email)
         {

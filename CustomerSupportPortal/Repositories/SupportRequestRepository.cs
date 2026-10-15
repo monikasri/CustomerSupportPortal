@@ -13,6 +13,14 @@ namespace CustomerSupportPortal.Repositories
         {
             _context = context;
         }
+
+        /// <summary>
+        /// Get All Requests Created by user to display on Screens for Agent/Admin/Customer
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="length"></param>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public RequestResult GetAllRequests(int start, int length, string search)
         {
             int pageNumber = (start / length) + 1;
@@ -49,7 +57,10 @@ namespace CustomerSupportPortal.Repositories
                 Data = requestDetails
             };
         }
-
+        /// <summary>
+        /// GetPriorities : Get All the Priorities like High,Low,Medium and Critical
+        /// </summary>
+        /// <returns></returns>
         public List<Priority> GetPriorities()
         {
             var priorities = _context.Priorities
@@ -61,7 +72,12 @@ namespace CustomerSupportPortal.Repositories
 
             return priorities;
         }
-       public void CreateRequest(RequestDetails requestDetails, string? email)
+        /// <summary>
+        /// CreateRequest : It will Create New Request By saving Data for logged in Customer
+        /// </summary>
+        /// <param name="requestDetails"></param>
+        /// <param name="email"></param>
+        public void CreateRequest(RequestDetails requestDetails, string? email)
         {
          int? customerId = _context.UserProfiles.SingleOrDefault(x=>x.Email == email)?.UserId;
             var request = new Request

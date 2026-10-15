@@ -4,6 +4,5 @@ namespace CustomerSupportPortal.Repositories
     public interface ILoginRepository
     {
         UserModel? ValidateUser(string email, string password);
-        UserRole? GetRoleNameByID(int? RoleId);
     }
 }

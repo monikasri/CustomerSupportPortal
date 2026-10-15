@@ -8,12 +8,10 @@ namespace CustomerSupportPortal.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILoginRepository _repository;
         public LoginService(ILoginRepository repository, IHttpContextAccessor httpContextAccessor)
         {
             _repository = repository;
-            _httpContextAccessor = httpContextAccessor;
         }
         public UserModel? AuthenticateUserAsync(string username, string password)
         {

@@ -22,13 +22,11 @@ namespace CustomerSupportPortal.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)
         {
             #region Authentication Logic 
             var user = _loginService.AuthenticateUserAsync(email, password);
-           // UserRole? role = _repository.GetRoleNameByID(usersProfile.RoleId);
             if (user == null)
             {
                 return Json(new
@@ -54,7 +52,7 @@ namespace CustomerSupportPortal.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 principal);
 
-            string redirectUrl;
+            string? redirectUrl;
 
             if (user.RoleName == "Admin")
                 redirectUrl = Url.Action("AdminDashboard", "Admin");
@@ -70,44 +68,5 @@ namespace CustomerSupportPortal.Controllers
             });
             #endregion
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Login(string email, string password)
-        //{
-        //    #region Authentication Logic 
-        //    bool isValid = await _loginService.AuthenticateUserAsync(email, password);
-        //    var role = User.FindFirst(ClaimTypes.Role)?.Value;
-        //    if (isValid)
-        //    {
-        //        if (role == "Admin")
-        //        {
-        //            return Json(new
-        //            {
-        //                success = true,
-        //                redirectUrl = Url.Action("AdminDashboard", "Admin")
-        //            });
-        //        }
-        //        else if (role == "Agent")
-        //        {
-        //            return Json(new
-        //            {
-        //                success = true,
-        //                redirectUrl = Url.Action("Dashboard", "Customer")
-        //            });
-        //        }
-        //        else
-        //        {
-        //            return Json(new
-        //            {
-        //                success = true,
-        //                redirectUrl = Url.Action("Dashboard", "Customer")
-        //            });
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return Ok(new { success = false, message = "Login failed" });
-        //    }
-        //    #endregion
-        //}
     }
 }

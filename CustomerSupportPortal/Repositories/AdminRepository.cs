@@ -8,6 +8,10 @@ namespace CustomerSupportPortal.Repositories
         {
             _context = context;
         }
+        /// <summary>
+        /// Return List of Users form UserProfile table where Role is Agent 
+        /// </summary>
+        /// <returns></returns>
         public List<UserProfile> GetAgents()
         {
             return _context.UserProfiles

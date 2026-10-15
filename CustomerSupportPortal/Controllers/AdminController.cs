@@ -34,9 +34,11 @@ namespace CustomerSupportPortal.Controllers
         [HttpPost]
         public IActionResult GetAllRequest(int start, int length)
         {
+            #region Search and Paging
             string search = Request.Form["search[value]"].ToString();
-            var result = _supportService.GetAllRequests(start, length, search);
             var sequenceNumber = Request.Form["draw"].ToString();
+            #endregion
+            var result = _supportService.GetAllRequests(start, length, search);
             return Json(new
             {
                 draw = sequenceNumber,
