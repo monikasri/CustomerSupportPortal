@@ -21,5 +21,10 @@ namespace CustomerSupportPortal.Services
         {
              _repository.CreateRequest(requestDetails,email);
         }
+       public void AssignRequest(int requestId, int agentId)
+        {
+
+            _repository.AssignRequest(requestId, agentId);
+        }
     }
 }

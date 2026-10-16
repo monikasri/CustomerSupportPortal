@@ -47,5 +47,16 @@ namespace CustomerSupportPortal.Controllers
                 data = result.Data
             });
         }
+
+        [HttpPost]
+        public IActionResult AssignRequest(int requestId, int agentId)
+        {
+            _supportService.AssignRequest(requestId, agentId);
+
+            return Json(new
+            {
+                success = true
+            });
+        }
     }
 }

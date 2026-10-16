@@ -84,7 +84,25 @@
     });
 }
 
+$('#RequestDetails').on('change', '.agent-dropdown', function () {
 
+    var requestId = $(this).data('request-id');
+    var agentId = $(this).val();
+
+    $.ajax({
+        url: '/Admin/AssignRequest',
+        type: 'POST',
+        data: {
+            requestId: requestId,
+            agentId: agentId
+        },
+        success: function (response) {
+            if (response.success) {
+                alert('Updated successfully');
+            }
+        }
+    });
+});
     </script>
 
 }

@@ -47,7 +47,8 @@ namespace CustomerSupportPortal.Repositories
                    AssignedToId=r.AssignedToNavigation.UserId != null ? r.AssignedToNavigation.UserId : null,
                    Priority = r.Priority != null ? r.Priority.PriorityType : null,
                    Description = r.Description,
-                   Status = r.Status.StatusType
+                   Status = r.Status.StatusType,
+                   RequestId=r.RequestId
                })
                .ToList();
             var filteredRecords = query.Count();
@@ -90,6 +91,23 @@ namespace CustomerSupportPortal.Repositories
             };
             _context.Requests.Add(request);
             _context.SaveChanges();
+        }
+        /// <summary>
+        /// Assign Request to Agents By Admin
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <param name="agentId"></param>
+        public void AssignRequest(int requestId, int agentId)
+        {
+            var request = _context.Requests
+                .FirstOrDefault(x => x.RequestId == requestId);
+
+            if (request != null)
+            {
+                request.AssignedTo = agentId;
+
+                _context.SaveChanges();
+            }
         }
     }
 }
